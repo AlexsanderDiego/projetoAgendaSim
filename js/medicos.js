@@ -16,7 +16,30 @@ let medicos = [
     }
 ]
 
-function ListarMedicos() {
+novoMedico.onclick = () => {
+    overlay.classList.add('active')
+    drawer.classList.add('active')
+}
+
+function listarEspecialidades () {
+    let especialidades = JSON.parse(localStorage.getItem('especialidades')) || []
+    medicoEspecialidade.innerHTML = ''
+
+    if (especialidades.length === 0) {
+        medicoEspecialidade.innerHTML = `
+            <option>Nenhuma especialidade cadastrada</option>
+        `
+    } else {
+        for (let i = 0; i < especialidades.length; i++) {
+            medicoEspecialidade.innerHTML += `
+            <option value='${especialidades.[i].id}'>${especialidades[i].nome}</option>
+                
+            `
+        }
+    }
+}
+
+function listarMedicos() {
     tabelaMedicos.innerHTML = ''
     for (let i = 0; i < medicos.length; i++) {
         tabelaMedicos.innerHTML += `
@@ -25,8 +48,8 @@ function ListarMedicos() {
                 <td>${medicos[i].especialidade}</td>
                 <td>
                     <div class="acoes">
-                        <box-icon class='suave' name='pencil'><box-icon>
-                        <box-icon class='suave' name='trash'><box-icon>
+                        <box-icon class='suave' name='pencil'></box-icon>
+                        <box-icon class='suave' name='trash'></box-icon>
                     </div>
                 </td>
             </tr>
@@ -34,7 +57,7 @@ function ListarMedicos() {
     }
 }
 
-ListarMedicos()
+listarMedicos()
 
 function adicionarMedico() {
     formCriar.onsubmit = function() {
@@ -46,7 +69,7 @@ function adicionarMedico() {
         }
         medicos.push(medico)
 
-        ListarMedicos()
+        listarMedicos()
     }
 }
 
