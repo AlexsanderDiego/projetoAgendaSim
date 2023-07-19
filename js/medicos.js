@@ -32,7 +32,7 @@ function listarEspecialidades () {
     } else {
         for (let i = 0; i < especialidades.length; i++) {
             medicoEspecialidade.innerHTML += `
-            <option value='${especialidades.[i].id}'>${especialidades[i].nome}</option>
+            <option value='${especialidades[i].id}'>${especialidades[i].nome}</option>
                 
             `
         }
